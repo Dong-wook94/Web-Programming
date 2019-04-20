@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>변수에 따른 배경색변경</title>
+    </head>
+    <body>
+        <h3>입력받은수에 걸맞는 배경색 출력</h3>
+        <hr>
+        <script>
+            var num1 = 2;
+            var num2 = 4.5;
+            var num3 = 6.8;
+            var n = prompt("숫자를 입력하세요.");
+            n = parseInt(n);
+            function change(color){
+                document.bgColor = color;
+            }
+            if(n<2){
+                change('red');
+            }
+            else if(n>=2&&n<4){
+                change('yellow');
+            }else{
+                change('blue');
+            }
+                    
+        </script>
+    </body>
+</html>
