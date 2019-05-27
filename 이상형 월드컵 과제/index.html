@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>이상형 월드컵</title>
+</head>
+
+<body>
+    <h2>좋아하는 마블영웅을 선택하시오.</h2>
+    <hr>
+
+
+
+    <label id="label1"><input type='radio' name='hero' id="Radio_btn" value='1' checked /><span id="span1">아이언맨<img
+                src="gif1.gif" height='200' id='img1'></span>
+    </label><br>
+    <label id="label2"><input type='radio' name='hero' id="Radio_btn" value='2' /><span id="span2">캡틴
+            아메리카<img src="gif2.gif" height='200' id='img2'></span>
+    </label>
+    <br><br>
+    <input type="button" value='선택' onClick="RadioClicked()">
+
+    <script>
+        var username ;
+        var count;
+        if (username == null) {
+            count = 0;
+            username = prompt("이름을 입력해 주십시오.", "");
+            if (username == null) {
+                alert("이름을 입력하시면 보다 나은 서비스를 제공받을 수 있습니다.");
+                username = "아무개";
+            }
+        }
+
+        count = sessionStorage.getItem(username);
+        if(count==null){
+            count =1;
+        }
+        else{
+            count = parseInt(count)+1;
+        }
+        sessionStorage.setItem(username,count);
+        
+
+        document.write('<p>어서오십시오. ' + username + '님의 ' + count + '번째 방문을 환영합니다!');
+
+        var stage = 0;
+        var num = new Array(0, 1);
+        var arrimage = new Array("gif1.gif", "gif2.gif", "gif3.gif", "gif4.gif", "gif5.gif", "gif6.gif", "gif7.gif", "gif8.gif");
+        var arrname = new Array("아이언맨", "캡틴 아메리카", "블랙팬서", "스파이더맨", "닥터스트레인지", "캡틴마블", "토르", "헐크");
+        var arrcheck = new Array(1, 1, 1, 1, 1, 1, 1, 1);
+        function RadioClicked() {
+            var select = document.getElementsByName('hero');
+            for (var i = 0; i < select.length; i++) {
+                if (select[i].checked == false) {
+                    arrcheck[num[i]] = 0;
+                }
+                else {
+                    if(stage==6){
+                        location.reload();
+                        document.write("<h1>"+arrname[num[i]]+"우승!!!</h1><br> <img src=" + arrimage[num[i]] + " height='400'><br>");
+                        document.write(username+"님의 "+count+"번째 선택은 "+arrname[num[i]] + "였습니다");
+                        alert(username+"님의 "+count+"번째 선택은 "+arrname[num[i]] + "였습니다");
+                    }
+                    else{
+                        //alert(arrname[num[i]] + "선택" + stage);
+                        stage++;
+                    }
+                    
+                }
+            }
+            if (stage < 4) {
+                num[0] += 2;
+                num[1] += 2;
+                var span1 = document.getElementById("span1");
+                span1.innerHTML = arrname[num[0]] + "<img src=" + arrimage[num[0]] + " height='200'>";
+                var span2 = document.getElementById("span2");
+                span2.innerHTML = arrname[num[1]] + "<img src=" + arrimage[num[1]] + " height='200'>";
+                var img1 = document.getElementById("img1");
+
+
+            }
+
+            else if (stage == 4) {
+                num[0] = 0;
+                num[1] = 2;
+                if (arrcheck[num[0]] == 0) {
+                    num[0] += 1;
+                }
+                if (arrcheck[num[1]] == 0) {
+                    num[1] += 1;
+                }
+                var span1 = document.getElementById("span1");
+                span1.innerHTML = arrname[num[0]] + "<img src=" + arrimage[num[0]] + " height='200'>";
+                var span2 = document.getElementById("span2");
+                span2.innerHTML = arrname[num[1]] + "<img src=" + arrimage[num[1]] + " height='200'>";
+                var img1 = document.getElementById("img1");
+
+            }
+            else if (stage == 5) {
+                num[0] = 4;
+                num[1] = 6;
+                while (arrcheck[num[0]] == 0) {
+                    num[0]++;
+                }
+                while (arrcheck[num[1]] == 0) {
+                    num[1]++;
+                }
+                var span1 = document.getElementById("span1");
+                span1.innerHTML = arrname[num[0]] + "<img src=" + arrimage[num[0]] + " height='200'>";
+                var span2 = document.getElementById("span2");
+                span2.innerHTML = arrname[num[1]] + "<img src=" + arrimage[num[1]] + " height='200'>";
+                var img1 = document.getElementById("img1");
+
+            }
+            else if (stage == 6) {
+                num[0] = 0;
+                num[1] = 4;
+                while (arrcheck[num[0]] == 0) {
+                    num[0]++;
+                }
+                while (arrcheck[num[1]] == 0) {
+                    num[1]++;
+                }
+                var span1 = document.getElementById("span1");
+                span1.innerHTML = arrname[num[0]] + "<img src=" + arrimage[num[0]] + " height='200'>";
+                var span2 = document.getElementById("span2");
+                span2.innerHTML = arrname[num[1]] + "<img src=" + arrimage[num[1]] + " height='200'>";
+                var img1 = document.getElementById("img1");
+            }
+
+            //alert(num[i]);
+        }
+
+
+    </script>
+
+</body>
+
+</html>
